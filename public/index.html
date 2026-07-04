@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEAVERTEC - CURSOS</title>
+
+    <!-- Fonte Inter (Melhora a tipografia) -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+
+<body class="bg-gray-50">
+
+<!-- Navigation -->
+<nav class="bg-white shadow-lg sticky top-0 z-50" role="navigation" aria-label="Navegação Principal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+
+            <div class="flex items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group space-x-4" aria-label="Voltar para a página inicial da Weavertec">
+                    <img src="https://i.imgur.com/e7SRbLO.png" alt="Logo Weavertec" class="h-16 w-auto transition-transform duration-400 group-hover:scale-105">
+
+                    <!-- Linha divisória vertical elegante -->
+                    <div class="h-10 w-px bg-gray-300 hidden sm:block"></div>
+
+                    <!-- Subtítulo -->
+                    <div class="hidden sm:block leading-tight">
+                        <span class="text-xs font-black tracking-widest text-gray-500 uppercase block">Cursos</span>
+                        <span class="text-xs font-black tracking-widest text-red-600 uppercase block">TÉCNICOS</span>
+                        <span class="text-xs font-black tracking-widest text-red-600 uppercase block">Profissionalizantes</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- MENU DESKTOP -->
+            <ul class="hidden md:flex md:items-center md:space-x-8" role="menu">
+                <li role="none" class="relative group">
+                    <!-- Botão Técnicos -->
+                    <button id="tecnicosDropdownBtn" class="flex items-center text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        Técnicos
+                        <i data-feather="chevron-down" class="ml-1 h-4 w-4 transition-transform duration-200" id="tecnicosChevron"></i>
+                    </button>
+
+                    <!-- Dropdown Técnicos -->
+                    <div id="tecnicosDropdownMenu" class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden opacity-0 transition-all duration-200 z-50 transform origin-top-left scale-95" role="menu" aria-orientation="vertical" tabindex="-1">
+                        <div class="py-1" role="none">
+                            <a href="cursos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Cursos</a>
+                            <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Área do Aluno</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li role="none" class="relative group">
+                    <!-- Botão Profissionalizante -->
+                    <button id="profDropdownBtn" class="flex items-center text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        Profissionalizante
+                        <i data-feather="chevron-down" class="ml-1 h-4 w-4 transition-transform duration-200" id="profChevron"></i>
+                    </button>
+
+                    <!-- Dropdown Profissionalizante -->
+                    <div id="profDropdownMenu" class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden opacity-0 transition-all duration-200 z-50 transform origin-top-left scale-95" role="menu" aria-orientation="vertical" tabindex="-1">
+                        <div class="py-1" role="none">
+                            <a href="cursos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Cursos</a>
+                            <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Área do Aluno</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li role="none">
+                   <a href="https://backinformatica.vercel.app/atendimento.html" class="bg-gradient-to-r from-red-500 to-red-800 text-white font-semibold py-2 px-6 rounded-full shadow-lg transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 text-sm inline-flex items-center" target="_blank" rel="noopener noreferrer" role="menuitem">Cadastre-se</a>
+                </li>
+            </ul>
+
+            <!-- Botão Menu Hamburguer (Mobile) -->
+            <div class="-mr-2 flex items-center md:hidden">
+                <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false" aria-label="Alternar menu principal">
+                    <i data-feather="menu" id="iconMenu" class="h-6 w-6 text-gray-600"></i>
+                    <i data-feather="x" id="iconX" class="h-6 w-6 hidden text-gray-600"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENU MOBILE -->
+    <div class="md:hidden hidden bg-white border-t border-gray-100 shadow-inner" id="mobile-menu">
+        <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3" role="menu">
+            <li role="none">
+                 <a href="index.html" class="text-gray-700 hover:bg-gray-50 hover:text-red-700 block px-3 py-2 rounded-md text-base font-semibold" role="menuitem">Início</a>
+            </li>
+
+            <!-- Item Técnicos com Submenu Mobile -->
+            <li role="none" class="block">
+                <button id="mobileTecnicosBtn" class="w-full flex items-center justify-between text-gray-700 hover:bg-gray-50 hover:text-red-700 px-3 py-2 rounded-md text-base font-semibold focus:outline-none">
+                    <span>Técnicos</span>
+                    <i data-feather="chevron-down" class="h-4 w-4 transition-transform duration-200" id="mobileTecnicosChevron"></i>
+                </button>
+                <div id="mobileTecnicosSubmenu" class="hidden pl-6 bg-gray-50 rounded-lg mt-1 space-y-1">
+                    <a href="cursos.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Cursos</a>
+                    <a href="login.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Área do Aluno</a>
+                </div>
+            </li>
+
+            <!-- Item Profissionalizante com Submenu Mobile -->
+            <li role="none" class="block">
+                <button id="mobileProfBtn" class="w-full flex items-center justify-between text-gray-700 hover:bg-gray-50 hover:text-red-700 px-3 py-2 rounded-md text-base font-semibold focus:outline-none">
+                    <span>Profissionalizante</span>
+                    <i data-feather="chevron-down" class="h-4 w-4 transition-transform duration-200" id="mobileProfChevron"></i>
+                </button>
+                <div id="mobileProfSubmenu" class="hidden pl-6 bg-gray-50 rounded-lg mt-1 space-y-1">
+                    <a href="cursos.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Cursos</a>
+                    <a href="login.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Área do Aluno</a>
+                </div>
+            </li>
+
+            <li role="none">
+                <a href="contato.html" class="text-gray-700 hover:bg-gray-50 hover:text-red-700 block px-3 py-2 rounded-md text-base font-semibold" role="menuitem">Contato</a>
+            </li>
+        </ul>
+
+        <div class="pt-4 pb-6 border-t border-gray-100">
+            <div class="px-5">
+                <a href="https://backinformatica.vercel.app/atendimento.html" class="bg-gradient-to-r from-red-500 to-red-800 text-white font-semibold w-full block text-center py-3 px-4 rounded-full shadow-lg transform transition hover:scale-[1.01] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 text-base" target="_blank" rel="noopener noreferrer">
+                    Cadastre-se
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Slide Carousel -->
+<div class="slideshow-container relative w-full overflow-hidden">
+    <!-- Slide 1 -->
+    <div class="mySlides fade relative w-full">
+        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200" class="w-full h-[36rem] object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent flex items-center justify-start p-8 sm:p-16 lg:p-24">
+            <div class="text-white text-left max-w-xl">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight" data-aos="fade-right" data-aos-duration="1000">
+                    O Passo Certo para o Seu <strong class="text-red-500">Futuro Profissional</strong>
+                </h2>
+                <p class="text-lg sm:text-xl font-light mb-8 text-gray-200" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
+                    Formação técnica de verdade, moderna e focada no que as empresas realmente procuram no mercado atual.
+                </p>
+                <div data-aos="zoom-in" data-aos-delay="600" data-aos-duration="800">
+                    <a href="https://backinformatica.vercel.app/atendimento.html" target="_blank" class="inline-flex items-center px-8 py-3 bg-red-600 text-white text-base font-bold rounded-full hover:bg-red-700 transition transform hover:scale-105 shadow-xl">
+                        Falar com orientador
+                        <i data-feather="arrow-right" class="ml-3 h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="mySlides fade relative w-full hidden">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200" class="w-full h-[36rem] object-cover">
+        <div class="absolute inset-0 bg-gradient-to-l from-black via-black/70 to-transparent flex items-center justify-end p-8 sm:p-16 lg:p-24">
+            <div class="text-white text-right max-w-xl flex flex-col items-end">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight" data-aos="fade-left" data-aos-duration="1000">
+                    Técnico em <strong class="text-red-500">Sistemas</strong>
+                </h2>
+                <p class="text-lg sm:text-xl font-light mb-8 text-gray-200" data-aos="fade-left" data-aos-delay="300" data-aos-duration="1000">
+                    Domine as linguagens de programação mais requisitadas do mundo e construa sistemas inovadores.
+                </p>
+                <div data-aos="zoom-in" data-aos-delay="600" data-aos-duration="800">
+                    <a href="cursos.html" class="inline-flex items-center px-8 py-3 bg-white text-gray-900 text-base font-bold rounded-full hover:bg-red-600 hover:text-white transition transform hover:scale-105 shadow-xl">
+                        Conhecer Grade Curricular
+                        <i data-feather="code" class="ml-3 h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="mySlides fade relative w-full hidden">
+        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200" class="w-full h-[36rem] object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent flex items-center justify-start p-8 sm:p-16 lg:p-24">
+            <div class="text-white text-left max-w-xl">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight" data-aos="fade-up" data-aos-duration="1000">
+                    Eletrotécnica <strong class="text-red-500">Industrial</strong>
+                </h2>
+                <p class="text-lg sm:text-xl font-light mb-8 text-gray-200" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+                    Aprenda comandos elétricos, automação e sistemas de potência em laboratórios de última geração.
+                </p>
+                <div data-aos="zoom-in" data-aos-delay="600" data-aos-duration="800">
+                    <a href="https://api.whatsapp.com/send?phone=5591983252639" target="_blank" class="inline-flex items-center px-8 py-3 bg-red-600 text-white text-base font-bold rounded-full hover:bg-red-700 transition transform hover:scale-105 shadow-xl">
+                        Garantir Vaga Promocional
+                        <i data-feather="zap" class="ml-3 h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Indicadores/Pontos -->
+    <div class="dots-container absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-20">
+        <span class="dot h-3 w-3 rounded-full bg-white/40 cursor-pointer transition-colors duration-200"></span>
+        <span class="dot h-3 w-3 rounded-full bg-white/40 cursor-pointer transition-colors duration-200"></span>
+        <span class="dot h-3 w-3 rounded-full bg-white/40 cursor-pointer transition-colors duration-200"></span>
+    </div>
+</div>
+
+<!-- SEÇÃO DE CURSOS (Layout Uniasselvi) -->
+<section id="cursos-destaque" class="py-16 sm:py-24 bg-white" aria-labelledby="cursos-titulo">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Cabeçalho Institucional -->
+        <div class="mb-10 text-left" data-aos="fade-down" data-aos-duration="800">
+            <h2 id="cursos-titulo" class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-2">
+                WEAVERTEC, a sua evolução profissional começa aqui
+            </h2>
+            <p class="text-base text-gray-700 max-w-4xl">
+                Cursos Cursos Técnicos e Profissionalizantes tanto presenciais quanto à distância. <strong class="text-gray-900">Descubra o curso ideal para você!</strong>
+            </p>
+            <p class="text-sm text-gray-500 mt-1">
+                Escolha a formação que te dá certificação rápida, encaminhamento ao mercado e benefícios exclusivos ao longo de todo o curso.
+            </p>
+        </div>
+
+        <!-- Filtros Estilo Tags -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-8 border-b border-gray-100 pb-6" data-aos="fade-up" data-aos-duration="600">
+            <div class="flex flex-wrap gap-2 sm:gap-3">
+                <button data-filter="all" class="filter-btn px-5 py-1.5 rounded-full border border-red-600 bg-red-600 text-white font-medium text-sm transition shadow-sm focus:outline-none">Todos</button>
+                <button data-filter="tecnico" class="filter-btn px-5 py-1.5 rounded-full border border-gray-300 text-gray-600 bg-white hover:border-red-600 hover:text-red-600 font-medium text-sm transition focus:outline-none">Técnico</button>
+                <button data-filter="profissionalizante" class="filter-btn px-5 py-1.5 rounded-full border border-gray-300 text-gray-600 bg-white hover:border-red-600 hover:text-red-600 font-medium text-sm transition focus:outline-none">Profissionalizante</button>
+                <button data-filter="presencial" class="filter-btn px-5 py-1.5 rounded-full border border-gray-300 text-gray-600 bg-white hover:border-red-600 hover:text-red-600 font-medium text-sm transition focus:outline-none">Presencial</button>
+                <button data-filter="ead" class="filter-btn px-5 py-1.5 rounded-full border border-gray-300 text-gray-600 bg-white hover:border-red-600 hover:text-red-600 font-medium text-sm transition focus:outline-none">EAD</button>
+            </div>
+
+            <a href="cursos.html" class="inline-flex items-center text-sm font-bold text-red-600 hover:text-red-800 transition group">
+                Ver mais cursos
+                <i data-feather="arrow-right" class="ml-1 h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+
+        <!-- Grade de Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 transition-all duration-300">
+            <!-- Card 1 -->
+            <div data-category="tecnico ead" class="course-card relative group h-96 rounded-2xl overflow-hidden shadow-md transition duration-500 hover:shadow-xl hover:-translate-y-1 transform" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600" alt="Desenvolvimento de Sistemas" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div class="absolute top-4 left-4 flex gap-1.5 z-10">
+                    <span class="bg-red-400 text-black font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">Técnico</span>
+                    <span class="bg-red-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">EAD</span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 p-5 flex items-end justify-between text-white z-10">
+                    <div>
+                        <p class="text-xs font-light text-gray-300 uppercase tracking-widest">Habilitação Técnica</p>
+                        <h3 class="text-xl font-black tracking-tight leading-tight uppercase">Desenvolvimento de Sistemas</h3>
+                    </div>
+                    <a href="https://backinformatica.vercel.app/atendimento.html" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-900 group-hover:bg-red-600 group-hover:text-white transition shadow-md">
+                        <i data-feather="arrow-right" class="h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div data-category="tecnico presencial" class="course-card relative group h-96 rounded-2xl overflow-hidden shadow-md transition duration-500 hover:shadow-xl hover:-translate-y-1 transform" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600" alt="Eletrotécnica Industrial" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div class="absolute top-4 left-4 flex gap-1.5 z-10">
+                    <span class="bg-red-400 text-black font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">Técnico</span>
+                    <span class="bg-red-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">Presencial</span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 p-5 flex items-end justify-between text-white z-10">
+                    <div>
+                        <p class="text-xs font-light text-gray-300 uppercase tracking-widest">Habilitação Técnica</p>
+                        <h3 class="text-xl font-black tracking-tight leading-tight uppercase">Eletrotécnica Industrial</h3>
+                    </div>
+                    <a href="https://backinformatica.vercel.app/atendimento.html" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-900 group-hover:bg-red-600 group-hover:text-white transition shadow-md">
+                        <i data-feather="arrow-right" class="h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div data-category="profissionalizante presencial" class="course-card relative group h-96 rounded-2xl overflow-hidden shadow-md transition duration-500 hover:shadow-xl hover:-translate-y-1 transform" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600" alt="Automação e Robótica" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div class="absolute top-4 left-4 flex gap-1.5 z-10">
+                    <span class="bg-red-400 text-black font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">Profissionalizante</span>
+                    <span class="bg-red-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">Presencial</span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 p-5 flex items-end justify-between text-white z-10">
+                    <div>
+                        <p class="text-xs font-light text-gray-300 uppercase tracking-widest">Capacitação Avançada</p>
+                        <h3 class="text-xl font-black tracking-tight leading-tight uppercase">Automação e Robótica</h3>
+                    </div>
+                    <a href="https://backinformatica.vercel.app/atendimento.html" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-900 group-hover:bg-red-600 group-hover:text-white transition shadow-md">
+                        <i data-feather="arrow-right" class="h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div data-category="profissionalizante ead" class="course-card relative group h-96 rounded-2xl overflow-hidden shadow-md transition duration-500 hover:shadow-xl hover:-translate-y-1 transform" data-aos="fade-up" data-aos-delay="400">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600" alt="Suporte e Redes" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div class="absolute top-4 left-4 flex gap-1.5 z-10">
+                    <span class="bg-red-400 text-black font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">Profissionalizante</span>
+                    <span class="bg-red-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider">EAD</span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 p-5 flex items-end justify-between text-white z-10">
+                    <div>
+                        <p class="text-xs font-light text-gray-300 uppercase tracking-widest">Suporte Técnico</p>
+                        <h3 class="text-xl font-black tracking-tight leading-tight uppercase">Hardware e Redes de TI</h3>
+                    </div>
+                    <a href="https://backinformatica.vercel.app/atendimento.html" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-900 group-hover:bg-red-600 group-hover:text-white transition shadow-md">
+                        <i data-feather="arrow-right" class="h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--SOBRE-->
+<section id="trabalho-destaque" class="relative py-20 bg-red-50 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center justify-between">
+
+            <div class="lg:w-1/2 mb-10 lg:mb-0" data-aos="fade-right">
+                <h2 class="text-base text-red-600 font-semibold tracking-wide uppercase mb-2">
+                    Educação Profissional de Verdade
+                </h2>
+                <h3 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                    Transforme Conhecimento em
+                    <span class="text-red-600">Oportunidades de Carreira e Sucesso.</span>
+                </h3>
+                <p class="text-xl text-gray-700 mb-6">
+                    Na <strong>Weavertec</strong>, impulsionamos o aprendizado prático e focado no mercado de trabalho atual. Preparamos você com laboratórios tecnológicos e conteúdo sob medida.
+                </p>
+                <p class="text-lg text-gray-600 mb-8 font-light">
+                    Nosso compromisso é capacitar novos profissionais, garantindo diferenciais competitivos e flexibilidade de aprendizado.
+                </p>
+                <a href="cursos.html" class="inline-block bg-gray-900 text-white px-8 py-3 text-lg font-bold rounded-lg shadow-xl hover:bg-red-600 transition duration-300">
+                    Conheça Nossos Cursos Agora
+                </a>
+            </div>
+
+            <div class="lg:w-1/2 lg:flex lg:justify-end" data-aos="fade-left" data-aos-delay="200">
+                <img src="https://img.freepik.com/fotos-gratis/dados-financeiros-em-exibicao-em-um-monitor-de-computador_23-2149372330.jpg?w=740&q=80" alt="Estudantes em laboratório tecnológico" class="max-w-full lg:max-w-md rounded-xl shadow-2xl transition-slow transform hover:rotate-1 hover:scale-[1.03] duration-500" style="max-height: 400px; object-fit: cover;">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<header id="solicitacao-atendimento" class="bg-[url('heyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80')] py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl font-extrabold text-gray-900 mb-4" data-aos="fade-up">
+             Sua Formação <span class="text-red-600">Com Atendimento Imediato</span>
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
+            Precisa de ajuda para escolher sua carreira, entender sobre bolsas ou matrículas? Clique no botão e fale diretamente com um de nossos <strong>Orientadores Educacionais</strong>.
+        </p>
+        <a href="https://api.whatsapp.com/send?phone=5591983252639&text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20duvidas%20sobre%20as%20inscricoes." class="bg-gradient-to-r from-red-600 to-red-800 text-white font-semibold py-4 px-12 rounded-full shadow-lg transform transition hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 text-lg inline-flex items-center justify-center" target="_blank" rel="noopener noreferrer" data-aos="fade-up" data-aos-delay="200" aria-label="Fale com a Weavertec via WhatsApp">
+            Atendimento Imediato (WhatsApp)
+        </a>
+    </div>
+</header>
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="col-span-2 md:col-span-1">
+                <div class="flex items-center mb-4">
+                    <span class="text-xl font-bold">Weavertec</span>
+                </div>
+                <p class="text-gray-400 text-sm">Formação e capacitação técnica focada na evolução e inserção profissional no mercado corporativo e industrial.</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4 text-red-500">Navegação</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Início</a></li>
+                    <li><a href="cursos.html" class="text-gray-400 hover:text-white transition-colors">Cursos Disponíveis</a></li>
+                    <li><a href="contato.html" class="text-gray-400 hover:text-white transition-colors">Contatos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4 text-red-500">Links Úteis</h3>
+                <ul class="space-y-2">
+                    <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors">Área do Aluno</a></li>
+                    <li><a href="https://backinformatica.vercel.app/atendimento.html" class="text-gray-400 hover:text-white transition-colors">Inscrições</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4 text-red-500">Fale Conosco</h3>
+                <p class="text-gray-400">Email: contato@weavertec.com.br</p>
+                <p class="text-gray-400">Telefone: (91) 98325-2639</p>
+            </div>
+        </div>
+        <div class="mt-12 border-t border-gray-800 pt-8">
+            <p class="text-center text-gray-500 text-sm">&copy; 2026 Weavertec. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- UNIFIED SCRIPTS (AOS, FEATHER, MENU E FILTROS) -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Inicializa o AOS (Animações de rolagem) e os Ícones do Feather
+        AOS.init();
+        feather.replace();
+
+        // 2. FUNÇÃO UNIFICADA PARA DROPDOWNS DESKTOP
+        function configurarDropdownDesktop(btnId, menuId, chevronId) {
+            const btn = document.getElementById(btnId);
+            const menu = document.getElementById(menuId);
+
+            if (!btn || !menu) return;
+
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                // Fecha o outro menu que estiver aberto
+                fecharTodosDropdowns(menuId);
+
+                const abrindo = menu.classList.contains('hidden');
+                const chevron = document.getElementById(chevronId);
+
+                if (abrindo) {
+                    btn.setAttribute('aria-expanded', 'true');
+                    menu.classList.remove('hidden');
+                    setTimeout(() => {
+                        menu.classList.remove('opacity-0', 'scale-95');
+                        menu.classList.add('opacity-100', 'scale-100');
+                        if (chevron) chevron.classList.add('rotate-180');
+                    }, 10);
+                } else {
+                    btn.setAttribute('aria-expanded', 'false');
+                    menu.classList.remove('opacity-100', 'scale-100');
+                    menu.classList.add('opacity-0', 'scale-95');
+                    if (chevron) chevron.classList.remove('rotate-180');
+                    setTimeout(() => { menu.classList.add('hidden'); }, 200);
+                }
+            });
+        }
+
+        function fecharTodosDropdowns(ignorarMenuId = null) {
+            const configs = [
+                { btn: 'tecnicosDropdownBtn', menu: 'tecnicosDropdownMenu', chev: 'tecnicosChevron' },
+                { btn: 'profDropdownBtn', menu: 'profDropdownMenu', chev: 'profChevron' }
+            ];
+            configs.forEach(item => {
+                if (item.menu !== ignorarMenuId) {
+                    const btn = document.getElementById(item.btn);
+                    const menu = document.getElementById(item.menu);
+                    const chev = document.getElementById(item.chev);
+                    if (menu && !menu.classList.contains('hidden')) {
+                        btn.setAttribute('aria-expanded', 'false');
+                        menu.classList.remove('opacity-100', 'scale-100');
+                        menu.classList.add('opacity-0', 'scale-95');
+                        if (chev) chev.classList.remove('rotate-180');
+                        setTimeout(() => { menu.classList.add('hidden'); }, 200);
+                    }
+                }
+            });
+        }
+
+        configurarDropdownDesktop('tecnicosDropdownBtn', 'tecnicosDropdownMenu', 'tecnicosChevron');
+        configurarDropdownDesktop('profDropdownBtn', 'profDropdownMenu', 'profChevron');
+
+        // Fecha menus se clicar fora de qualquer elemento do cabeçalho
+        document.addEventListener('click', () => fecharTodosDropdowns());
+
+
+        // 3. MENU MOBILE HAMBURGUER (Toggle Geral)
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconMenu = document.getElementById('iconMenu');
+        const iconX = document.getElementById('iconX');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'true');
+                    if(iconMenu) iconMenu.classList.add('hidden');
+                    if(iconX) iconX.classList.remove('hidden');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    if(iconMenu) iconMenu.classList.remove('hidden');
+                    if(iconX) iconX.classList.add('hidden');
+                }
+            });
+        }
+
+        // 4. SUBMENUS SANFONA DO CELULAR (Mobile Accordion)
+        function configurarSanfonaMobile(btnId, submenuId, chevronId) {
+            const btn = document.getElementById(btnId);
+            const sub = document.getElementById(submenuId);
+            if (btn && sub) {
+                btn.addEventListener('click', () => {
+                    const escondido = sub.classList.contains('hidden');
+                    const chev = document.getElementById(chevronId);
+                    if (escondido) {
+                        sub.classList.remove('hidden');
+                        if (chev) chev.classList.add('rotate-180');
+                    } else {
+                        sub.classList.add('hidden');
+                        if (chev) chev.classList.remove('rotate-180');
+                    }
+                });
+            }
+        }
+        configurarSanfonaMobile('mobileTecnicosBtn', 'mobileTecnicosSubmenu', 'mobileTecnicosChevron');
+        configurarSanfonaMobile('mobileProfBtn', 'mobileProfSubmenu', 'mobileProfChevron');
+
+
+        // 5. CARROSSEL DE SLIDES AUTOMÁTICO
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.mySlides');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlides() {
+            if (slides.length === 0) return;
+            slides.forEach(slide => {
+                slide.style.display = 'none';
+                slide.querySelectorAll('[data-aos]').forEach(el => el.classList.remove('aos-animate'));
+            });
+            dots.forEach(dot => {
+                dot.classList.remove('bg-white', 'w-6');
+                dot.classList.add('bg-white/40', 'w-3');
+            });
+
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+
+            slides[slideIndex - 1].style.display = 'block';
+            setTimeout(() => {
+                slides[slideIndex - 1].querySelectorAll('[data-aos]').forEach(el => el.classList.add('aos-animate'));
+            }, 50);
+
+            if (dots[slideIndex - 1]) {
+                dots[slideIndex - 1].classList.remove('bg-white/40', 'w-3');
+                dots[slideIndex - 1].classList.add('bg-white', 'w-6');
+            }
+            setTimeout(showSlides, 6000);
+        }
+        showSlides();
+
+
+        // 6. FILTRO DE CURSOS (Estilo Uniasselvi)
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const courseCards = document.querySelectorAll('.course-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filterValue = button.getAttribute('data-filter');
+
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-red-600', 'text-white', 'border-red-600', 'shadow-sm');
+                    btn.classList.add('bg-white', 'text-gray-600', 'border-gray-300');
+                });
+                button.classList.remove('bg-white', 'text-gray-600', 'border-gray-300');
+                button.classList.add('bg-red-600', 'text-white', 'border-red-600', 'shadow-sm');
+
+                courseCards.forEach(card => {
+                    const cardCategories = card.getAttribute('data-category').split(' ');
+                    if (filterValue === 'all' || cardCategories.includes(filterValue)) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.classList.remove('opacity-0', 'scale-95');
+                            card.classList.add('opacity-100', 'scale-100');
+                        }, 10);
+                    } else {
+                        card.classList.remove('opacity-100', 'scale-100');
+                        card.classList.add('opacity-0', 'scale-95');
+                        setTimeout(() => { card.style.display = 'none'; }, 300);
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
