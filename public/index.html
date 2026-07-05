@@ -19,8 +19,124 @@
 </head>
 
 <body class="bg-gray-50">
+<dialog id="modal-cadastro" class="w-screen h-screen max-w-full max-h-full m-0 p-0 rounded-none shadow-2xl backdrop:bg-black/70 backdrop:backdrop-blur-sm overflow-hidden bg-white">
+   <div class="flex flex-col md:flex-row h-full w-full">
 
-<!-- Navigation -->
+      <div class="hidden md:flex md:w-4/12 h-full bg-gray-900 relative flex-col justify-between p-10 text-white bg-cover bg-center shrink-0" style="background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.75), rgba(185, 28, 28, 0.9)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800');">
+         <div>
+            <img src="https://i.imgur.com/e7SRbLO.png" alt="Logo Weavertec" class="h-14 w-auto brightness-0 invert">
+         </div>
+         <div class="space-y-3">
+            <span class="bg-white/20 text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-md backdrop-blur-md inline-block">Matrícula Simplificada</span>
+            <h4 class="text-3xl font-black tracking-tight leading-tight">Dê o próximo grande passo na sua carreira.</h4>
+            <p class="text-sm text-red-100 leading-relaxed">Preencha os seus dados reais ao lado. O nosso sistema processará a sua solicitação para liberação imediata do portal de estudos com status de pré-matrícula.</p>
+         </div>
+      </div>
+
+      <div class="flex-1 h-full p-8 md:p-12 bg-white flex flex-col justify-between overflow-hidden">
+
+         <div class="flex justify-between items-center pb-4 border-b border-gray-100 shrink-0">
+            <div>
+               <h3 class="text-2xl font-black text-gray-900 tracking-tight">Formulário de Cadastro</h3>
+               <p class="text-xs text-gray-400 mt-0.5">Preencha os campos obrigatórios para prosseguir</p>
+            </div>
+            <button type="button" onclick="document.getElementById('modal-cadastro').close()" class="text-gray-400 hover:text-gray-600 bg-gray-50 hover:bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center font-bold text-2xl transition-all cursor-pointer">&times;</button>
+         </div>
+
+         <form id="form-cadastro" onsubmit="abrirTermos(event)" class="flex-1 flex flex-col justify-center py-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-5 text-sm">
+
+               <div class="md:col-span-2 lg:col-span-2">
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Nome Completo:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm transition-all" placeholder="Digite seu nome completo">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">CPF (User do Login):</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl bg-gray-50 text-gray-500 text-sm focus:outline-none" placeholder="O seu CPF será seu usuário de acesso">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Email:</label>
+                  <input type="email" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm transition-all" placeholder="exemplo@email.com">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Telefone / WhatsApp:</label>
+                  <input type="tel" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm transition-all" placeholder="(00) 00000-0000">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Data de Nascimento:</label>
+                  <input type="date" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm text-gray-600">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">CEP:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm transition-all" placeholder="00000-000">
+               </div>
+
+               <div class="md:col-span-2 lg:col-span-2">
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Endereço Residencial:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm transition-all" placeholder="Rua, Número, Bairro">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Cidade:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Estado:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm" placeholder="UF">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">País:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl bg-gray-50 text-sm focus:outline-none text-gray-500" value="Brasil" readonly>
+               </div>
+
+               <div class="md:col-span-2 lg:col-span-3">
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Cursos Matriculados:</label>
+                  <input type="text" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm" placeholder="Digite os cursos de seu interesse">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Data para Acerto:</label>
+                  <input type="date" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm text-gray-600">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Forma de Pagamento:</label>
+                  <select class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm bg-white font-medium text-gray-700">
+                     <option value="cartao">💳 Cartão de Crédito</option>
+                     <option value="boleto">📄 Boleto Bancário</option>
+                     <option value="pix">⚡ Pix</option>
+                  </select>
+               </div>
+
+               <div class="md:col-span-2 lg:col-span-1">
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">PCD (Pessoa com Deficiência):</label>
+                  <input type="text" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm" placeholder="Especifique se houver">
+               </div>
+
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-gray-100 flex justify-end space-x-4 items-center shrink-0">
+               <button type="button" onclick="document.getElementById('modal-cadastro').close()" class="text-xs font-bold text-gray-400 hover:text-gray-600 uppercase tracking-wider transition-colors cursor-pointer">Cancelar</button>
+               <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-black py-3.5 px-10 rounded-xl text-xs uppercase tracking-wider transition-all shadow-md shadow-green-600/20 active:scale-95 cursor-pointer">
+                  ENVIAR CADASTRO
+               </button>
+            </div>
+         </form>
+
+      </div>
+   </div>
+</dialog>
+
+
+
+<!-- BARRA DE NAVEGAÇÃO -->
 <nav class="bg-white shadow-lg sticky top-0 z-50" role="navigation" aria-label="Navegação Principal">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20 items-center">
@@ -54,7 +170,7 @@
                     <div id="tecnicosDropdownMenu" class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden opacity-0 transition-all duration-200 z-50 transform origin-top-left scale-95" role="menu" aria-orientation="vertical" tabindex="-1">
                         <div class="py-1" role="none">
                             <a href="cursos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Cursos</a>
-                            <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Área do Aluno</a>
+                            <a href="alunos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Área do Aluno</a>
                         </div>
                     </div>
                 </li>
@@ -70,13 +186,19 @@
                     <div id="profDropdownMenu" class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden opacity-0 transition-all duration-200 z-50 transform origin-top-left scale-95" role="menu" aria-orientation="vertical" tabindex="-1">
                         <div class="py-1" role="none">
                             <a href="cursos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Cursos</a>
-                            <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Área do Aluno</a>
+                            <a href="alunos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Área do Aluno</a>
                         </div>
                     </div>
                 </li>
 
                 <li role="none">
-                   <a href="https://backinformatica.vercel.app/atendimento.html" class="bg-gradient-to-r from-red-500 to-red-800 text-white font-semibold py-2 px-6 rounded-full shadow-lg transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 text-sm inline-flex items-center" target="_blank" rel="noopener noreferrer" role="menuitem">Cadastre-se</a>
+                    <button
+                      type="button"
+                      onclick="document.getElementById('modal-cadastro').showModal()"
+                      class="bg-gradient-to-r from-red-500 to-red-800 text-white font-semibold py-2 px-6 rounded-full shadow-lg transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 text-sm inline-flex items-center"
+                      role="menuitem">
+                      Cadastre-se
+                    </button>
                 </li>
             </ul>
 
@@ -105,7 +227,7 @@
                 </button>
                 <div id="mobileTecnicosSubmenu" class="hidden pl-6 bg-gray-50 rounded-lg mt-1 space-y-1">
                     <a href="cursos.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Cursos</a>
-                    <a href="login.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Área do Aluno</a>
+                    <a href="alunos.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Área do Aluno</a>
                 </div>
             </li>
 
@@ -117,7 +239,7 @@
                 </button>
                 <div id="mobileProfSubmenu" class="hidden pl-6 bg-gray-50 rounded-lg mt-1 space-y-1">
                     <a href="cursos.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Cursos</a>
-                    <a href="login.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Área do Aluno</a>
+                    <a href="alunos.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Área do Aluno</a>
                 </div>
             </li>
 
@@ -408,6 +530,30 @@
 
 <!-- UNIFIED SCRIPTS (AOS, FEATHER, MENU E FILTROS) -->
 <script>
+// Passo 1: Valida o formulário principal e abre o modal de termos
+function abrirTermos(event) {
+   event.preventDefault(); // Impede o envio imediato e o recarregamento
+
+   // Fecha temporariamente o modal de cadastro e abre os termos
+   document.getElementById('modal-cadastro').close();
+   document.getElementById('modal-termos').showModal();
+}
+
+// Passo 2: Executado ao clicar no botão "ACEITAR" dos termos
+function confirmarEEnviar() {
+   // Fecha o modal de termos
+   document.getElementById('modal-termos').close();
+
+   // --- SUA LÓGICA DE BACK-END ENTRA AQUI ---
+   // (O aluno é cadastrado no banco de dados com status de 'pre-matricula')
+
+   // Exibe a mensagem de sucesso exigida
+   alert("ENVIADO COM SUCESSO, UM EMAIL DE CONFIRMAÇÃO SERÁ ENVIADO.");
+
+   // Limpa o formulário principal após a conclusão bem-sucedida
+   document.getElementById('form-cadastro').reset();
+}
+
     document.addEventListener('DOMContentLoaded', () => {
         // 1. Inicializa o AOS (Animações de rolagem) e os Ícones do Feather
         AOS.init();
