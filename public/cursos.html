@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEAVERTEC - CURSOS</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=100..900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+<nav class="bg-white shadow-md sticky top-0 z-40 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            <div class="flex items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group space-x-4" aria-label="Voltar para a página inicial da Weavertec">
+                    <img src="https://i.imgur.com/e7SRbLO.png" alt="Logo Weavertec" class="h-16 w-auto transition-transform duration-400 group-hover:scale-105">
+
+                    <!-- Linha divisória vertical elegante -->
+                    <div class="h-10 w-px bg-gray-300 hidden sm:block"></div>
+
+                    <!-- Subtítulo -->
+                    <div class="hidden sm:block leading-tight">
+                        <span class="text-xs font-black tracking-widest text-gray-500 uppercase block">Cursos</span>
+                        <span class="text-xs font-black tracking-widest text-red-600 uppercase block">TÉCNICOS</span>
+                        <span class="text-xs font-black tracking-widest text-red-600 uppercase block">Profissionalizantes</span>
+                    </div>
+                </a>
+            </div>
+             <!-- MENU DESKTOP -->
+            <ul class="hidden md:flex md:items-center md:space-x-8" role="menu">
+                <li role="none" class="relative group">
+                    <!-- Botão Técnicos -->
+                    <button id="tecnicosDropdownBtn" class="flex items-center text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        Técnicos
+                        <i data-feather="chevron-down" class="ml-1 h-4 w-4 transition-transform duration-200" id="tecnicosChevron"></i>
+                    </button>
+
+                    <!-- Dropdown Técnicos -->
+                    <div id="tecnicosDropdownMenu" class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden opacity-0 transition-all duration-200 z-50 transform origin-top-left scale-95" role="menu" aria-orientation="vertical" tabindex="-1">
+                        <div class="py-1" role="none">
+                            <a href="cursos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Cursos</a>
+                            <a href="alunos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Área do Aluno</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li role="none" class="relative group">
+                    <!-- Botão Profissionalizante -->
+                    <button id="profDropdownBtn" class="flex items-center text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        Profissionalizante
+                        <i data-feather="chevron-down" class="ml-1 h-4 w-4 transition-transform duration-200" id="profChevron"></i>
+                    </button>
+
+                    <!-- Dropdown Profissionalizante -->
+                    <div id="profDropdownMenu" class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden opacity-0 transition-all duration-200 z-50 transform origin-top-left scale-95" role="menu" aria-orientation="vertical" tabindex="-1">
+                        <div class="py-1" role="none">
+                            <a href="cursos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Cursos</a>
+                            <a href="alunos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors" role="menuitem">Área do Aluno</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li role="none">
+                    <button
+                      type="button"
+                      onclick="document.getElementById('modal-cadastro').showModal()"
+                      class="bg-gradient-to-r from-red-500 to-red-800 text-white font-semibold py-2 px-6 rounded-full shadow-lg transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 text-sm inline-flex items-center"
+                      role="menuitem">
+                      Cadastre-se
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Botão Menu Hamburguer (Mobile) -->
+            <div class="-mr-2 flex items-center md:hidden">
+                <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false" aria-label="Alternar menu principal">
+                    <i data-feather="menu" id="iconMenu" class="h-6 w-6 text-gray-600"></i>
+                    <i data-feather="x" id="iconX" class="h-6 w-6 hidden text-gray-600"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENU MOBILE -->
+    <div class="md:hidden hidden bg-white border-t border-gray-100 shadow-inner" id="mobile-menu">
+        <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3" role="menu">
+            <li role="none">
+                 <a href="index.html" class="text-gray-700 hover:bg-gray-50 hover:text-red-700 block px-3 py-2 rounded-md text-base font-semibold" role="menuitem">Início</a>
+            </li>
+
+            <!-- Item Técnicos com Submenu Mobile -->
+            <li role="none" class="block">
+                <button id="mobileTecnicosBtn" class="w-full flex items-center justify-between text-gray-700 hover:bg-gray-50 hover:text-red-700 px-3 py-2 rounded-md text-base font-semibold focus:outline-none">
+                    <span>Técnicos</span>
+                    <i data-feather="chevron-down" class="h-4 w-4 transition-transform duration-200" id="mobileTecnicosChevron"></i>
+                </button>
+                <div id="mobileTecnicosSubmenu" class="hidden pl-6 bg-gray-50 rounded-lg mt-1 space-y-1">
+                    <a href="cursos.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Cursos</a>
+                    <a href="alunos.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Área do Aluno</a>
+                </div>
+            </li>
+
+            <!-- Item Profissionalizante com Submenu Mobile -->
+            <li role="none" class="block">
+                <button id="mobileProfBtn" class="w-full flex items-center justify-between text-gray-700 hover:bg-gray-50 hover:text-red-700 px-3 py-2 rounded-md text-base font-semibold focus:outline-none">
+                    <span>Profissionalizante</span>
+                    <i data-feather="chevron-down" class="h-4 w-4 transition-transform duration-200" id="mobileProfChevron"></i>
+                </button>
+                <div id="mobileProfSubmenu" class="hidden pl-6 bg-gray-50 rounded-lg mt-1 space-y-1">
+                    <a href="cursos.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Cursos</a>
+                    <a href="alunos.html" class="block px-3 py-2 text-sm text-gray-600 hover:text-red-600 font-medium">Área do Aluno</a>
+                </div>
+            </li>
+
+            <li role="none">
+                <a href="contato.html" class="text-gray-700 hover:bg-gray-50 hover:text-red-700 block px-3 py-2 rounded-md text-base font-semibold" role="menuitem">Contato</a>
+            </li>
+        </ul>
+
+        <div class="pt-4 pb-6 border-t border-gray-100">
+            <div class="px-5">
+                <a href="https://backinformatica.vercel.app/atendimento.html" class="bg-gradient-to-r from-red-500 to-red-800 text-white font-semibold w-full block text-center py-3 px-4 rounded-full shadow-lg transform transition hover:scale-[1.01] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 text-base" target="_blank" rel="noopener noreferrer">
+                    Cadastre-se
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="relative bg-gray-900 text-white overflow-hidden h-[450px]">
+    <div id="carousel-container" class="relative h-full w-full">
+        <div class="carousel-item absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200');">
+            <div class="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-start">
+                <span class="bg-red-600 text-white text-xs font-black px-3 py-1 rounded-md uppercase tracking-widest mb-4">Inscrições Abertas</span>
+                <h1 class="text-4xl md:text-5xl font-black max-w-2xl leading-tight">Formações de Tecnologia Avançada para o Mercado</h1>
+                <p class="text-gray-300 mt-4 max-w-xl text-sm md:text-base">Garanta sua vaga hoje mesmo no pré-cadastro e receba o retorno da nossa equipe educacional.</p>
+            </div>
+        </div>
+        <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200');">
+            <div class="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-start">
+                <span class="bg-gray-700 text-white text-xs font-black px-3 py-1 rounded-md uppercase tracking-widest mb-4">Promoção Exclusiva</span>
+                <h1 class="text-4xl md:text-5xl font-black max-w-2xl leading-tight">Matricule-se e Ganhe Cursos Extras Gratuitos</h1>
+                <p class="text-gray-300 mt-4 max-w-xl text-sm md:text-base">Consulte nossos pacotes promocionais configurados diretamente pelas escolas parceiras.</p>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="mudarSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-black/40 hover:bg-red-600 rounded-full transition-colors"><i data-feather="chevron-left" class="h-6 w-6"></i></button>
+    <button onclick="mudarSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black/40 hover:bg-red-600 rounded-full transition-colors"><i data-feather="chevron-right" class="h-6 w-6"></i></button>
+</section>
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-10">
+    <div class="bg-white p-6 rounded-3xl shadow-xl border border-gray-100 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+        <div class="relative md:col-span-2">
+            <input type="text" id="input-busca" oninput="filtrarCatalogo()" placeholder="Qual curso você deseja encontrar hoje?..." class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-red-500 focus:bg-white transition-all">
+            <i data-feather="search" class="absolute left-4 top-3.5 h-4 w-4 text-gray-400"></i>
+        </div>
+        <div>
+            <select id="select-categoria" onchange="filtrarCatalogo()" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-red-500 focus:bg-white transition-all font-medium text-gray-600">
+                <option value="all">Todas as Categorias</option>
+                <option value="tecnologia">Tecnologia & Dev</option>
+                <option value="gestao">Gestão & Negócios</option>
+                <option value="saude">Saúde & Bem Estar</option>
+            </select>
+        </div>
+    </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex items-center justify-between mb-8">
+        <div>
+            <h2 class="text-2xl font-black text-gray-900 tracking-tight">Nossos Cursos Disponíveis</h2>
+            <p class="text-xs text-gray-400 mt-0.5">Grade curricular atualizada em tempo real via sistema administrativo.</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="grid-catalogo">
+
+        <div class="card-curso bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col group hover:shadow-md transition-all" data-titulo="desenvolvimento full stack python web" data-categoria="tecnologia">
+            <div class="relative h-48 bg-gray-200 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600" alt="Capa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <span class="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded shadow">EAD / On-line</span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+                <span class="text-[10px] font-bold text-red-600 uppercase tracking-wider mb-1">Tecnologia & Dev</span>
+                <h3 class="text-base font-black text-gray-900 group-hover:text-red-600 transition-colors leading-snug">Desenvolvimento Full Stack Python</h3>
+                <p class="text-xs text-gray-500 font-medium mt-2 line-clamp-2">Aprenda a construir aplicações web completas do front-end ao banco de dados com Python.</p>
+
+                <div class="mt-4 pt-4 border-t border-gray-100 flex items-baseline justify-between">
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Mensalidade</p>
+                        <p class="text-lg font-black text-gray-900">R$ 149,90</p>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-400">Duração: 6 Meses</span>
+                </div>
+
+                <button onclick="abrirPreCadastro('Desenvolvimento Full Stack Python', 'TEC-PY')" class="w-full mt-5 bg-gray-900 hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center space-x-2">
+                    <span>Ver mais & Garantir Vaga</span>
+                    <i data-feather="arrow-right" class="h-3.5 w-3.5"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="card-curso bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col group hover:shadow-md transition-all" data-titulo="gestao de projetos inovadores metodologias ageis" data-categoria="gestao">
+            <div class="relative h-48 bg-gray-200 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600" alt="Capa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <span class="absolute top-4 left-4 bg-gray-900 text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded shadow">Presencial</span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+                <span class="text-[10px] font-bold text-gray-600 uppercase tracking-wider mb-1">Gestão & Negócios</span>
+                <h3 class="text-base font-black text-gray-900 group-hover:text-red-600 transition-colors leading-snug">Gestão de Projetos Inovadores</h3>
+                <p class="text-xs text-gray-500 font-medium mt-2 line-clamp-2">Domine Scrum, Kanban e metodologias corporativas ágeis para liderar equipes de sucesso.</p>
+
+                <div class="mt-4 pt-4 border-t border-gray-100 flex items-baseline justify-between">
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Mensalidade</p>
+                        <p class="text-lg font-black text-gray-900">R$ 199,90</p>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-400">Duração: 4 Meses</span>
+                </div>
+
+                <button onclick="abrirPreCadastro('Gestão de Projetos Inovadores', 'MNG-AGI')" class="w-full mt-5 bg-gray-900 hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center space-x-2">
+                    <span>Ver mais & Garantir Vaga</span>
+                    <i data-feather="arrow-right" class="h-3.5 w-3.5"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<dialog id="modal-cadastro" class="w-screen h-screen max-w-full max-h-full m-0 p-0 rounded-none shadow-2xl backdrop:bg-black/70 backdrop:backdrop-blur-sm overflow-hidden bg-white">
+   <div class="flex flex-col md:flex-row h-full w-full">
+
+      <div class="hidden md:flex md:w-4/12 h-full bg-gray-900 relative flex-col justify-between p-10 text-white bg-cover bg-center shrink-0" style="background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.75), rgba(185, 28, 28, 0.9)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800');">
+         <div>
+            <img src="https://i.imgur.com/e7SRbLO.png" alt="Logo Weavertec" class="h-14 w-auto brightness-0 invert">
+         </div>
+         <div class="space-y-3">
+            <span class="bg-white/20 text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-md backdrop-blur-md inline-block">Matrícula Simplificada</span>
+            <h4 class="text-3xl font-black tracking-tight leading-tight">Dê o próximo grande passo na sua carreira.</h4>
+            <p class="text-sm text-red-100 leading-relaxed">Preencha os seus dados reais ao lado. O nosso sistema processará a sua solicitação para liberação imediata do portal de estudos com status de pré-matrícula.</p>
+         </div>
+      </div>
+
+      <div class="flex-1 h-full p-8 md:p-12 bg-white flex flex-col justify-between overflow-hidden">
+
+         <div class="flex justify-between items-center pb-4 border-b border-gray-100 shrink-0">
+            <div>
+               <h3 class="text-2xl font-black text-gray-900 tracking-tight">Formulário de Cadastro</h3>
+               <p class="text-xs text-gray-400 mt-0.5">Preencha os campos obrigatórios para prosseguir</p>
+            </div>
+            <button type="button" onclick="document.getElementById('modal-cadastro').close()" class="text-gray-400 hover:text-gray-600 bg-gray-50 hover:bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center font-bold text-2xl transition-all cursor-pointer">&times;</button>
+         </div>
+
+         <form id="form-cadastro" onsubmit="abrirTermos(event)" class="flex-1 flex flex-col justify-center py-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-5 text-sm">
+
+               <div class="md:col-span-2 lg:col-span-2">
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Nome Completo:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm transition-all" placeholder="Digite seu nome completo">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">CPF (User do Login):</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl bg-gray-50 text-gray-500 text-sm focus:outline-none" placeholder="O seu CPF será seu usuário de acesso">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Email:</label>
+                  <input type="email" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm transition-all" placeholder="exemplo@email.com">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Telefone / WhatsApp:</label>
+                  <input type="tel" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm transition-all" placeholder="(00) 00000-0000">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Data de Nascimento:</label>
+                  <input type="date" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm text-gray-600">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">CEP:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm transition-all" placeholder="00000-000">
+               </div>
+
+               <div class="md:col-span-2 lg:col-span-2">
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Endereço Residencial:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm transition-all" placeholder="Rua, Número, Bairro">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Cidade:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Estado:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm" placeholder="UF">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">País:</label>
+                  <input type="text" required class="w-full p-2.5 border border-gray-200 rounded-xl bg-gray-50 text-sm focus:outline-none text-gray-500" value="Brasil" readonly>
+               </div>
+
+               <!-- ADICIONADO O ID="cad-curso-nome" AQUI NESTE INPUT -->
+               <div class="md:col-span-2 lg:col-span-3">
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Cursos Matriculados:</label>
+                  <input type="text" id="cad-curso-nome" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm" placeholder="Digite os cursos de seu interesse">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Data para Acerto:</label>
+                  <input type="date" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm text-gray-600">
+               </div>
+
+               <div>
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">Forma de Pagamento:</label>
+                  <select class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm bg-white font-medium text-gray-700">
+                     <option value="cartao">💳 Cartão de Crédito</option>
+                     <option value="boleto">📄 Boleto Bancário</option>
+                     <option value="pix">⚡ Pix</option>
+                  </select>
+               </div>
+
+               <div class="md:col-span-2 lg:col-span-1">
+                  <label class="block font-bold text-gray-600 text-xs uppercase mb-1">PCD (Pessoa com Deficiência):</label>
+                  <input type="text" class="w-full p-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-red-500 text-sm" placeholder="Especifique se houver">
+               </div>
+
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-gray-100 flex justify-end space-x-4 items-center shrink-0">
+               <button type="button" onclick="document.getElementById('modal-cadastro').close()" class="text-xs font-bold text-gray-400 hover:text-gray-600 uppercase tracking-wider transition-colors cursor-pointer">Cancelar</button>
+               <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-black py-3.5 px-10 rounded-xl text-xs uppercase tracking-wider transition-all shadow-md shadow-green-600/20 active:scale-95 cursor-pointer">
+                  ENVIAR CADASTRO
+               </button>
+            </div>
+         </form>
+
+      </div>
+   </div>
+</dialog>
+
+<script>
+
+            // 2. FUNÇÃO UNIFICADA PARA DROPDOWNS DESKTOP
+        function configurarDropdownDesktop(btnId, menuId, chevronId) {
+            const btn = document.getElementById(btnId);
+            const menu = document.getElementById(menuId);
+
+            if (!btn || !menu) return;
+
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                // Fecha o outro menu que estiver aberto
+                fecharTodosDropdowns(menuId);
+
+                const abrindo = menu.classList.contains('hidden');
+                const chevron = document.getElementById(chevronId);
+
+                if (abrindo) {
+                    btn.setAttribute('aria-expanded', 'true');
+                    menu.classList.remove('hidden');
+                    setTimeout(() => {
+                        menu.classList.remove('opacity-0', 'scale-95');
+                        menu.classList.add('opacity-100', 'scale-100');
+                        if (chevron) chevron.classList.add('rotate-180');
+                    }, 10);
+                } else {
+                    btn.setAttribute('aria-expanded', 'false');
+                    menu.classList.remove('opacity-100', 'scale-100');
+                    menu.classList.add('opacity-0', 'scale-95');
+                    if (chevron) chevron.classList.remove('rotate-180');
+                    setTimeout(() => { menu.classList.add('hidden'); }, 200);
+                }
+            });
+        }
+
+        function fecharTodosDropdowns(ignorarMenuId = null) {
+            const configs = [
+                { btn: 'tecnicosDropdownBtn', menu: 'tecnicosDropdownMenu', chev: 'tecnicosChevron' },
+                { btn: 'profDropdownBtn', menu: 'profDropdownMenu', chev: 'profChevron' }
+            ];
+            configs.forEach(item => {
+                if (item.menu !== ignorarMenuId) {
+                    const btn = document.getElementById(item.btn);
+                    const menu = document.getElementById(item.menu);
+                    const chev = document.getElementById(item.chev);
+                    if (menu && !menu.classList.contains('hidden')) {
+                        btn.setAttribute('aria-expanded', 'false');
+                        menu.classList.remove('opacity-100', 'scale-100');
+                        menu.classList.add('opacity-0', 'scale-95');
+                        if (chev) chev.classList.remove('rotate-180');
+                        setTimeout(() => { menu.classList.add('hidden'); }, 200);
+                    }
+                }
+            });
+        }
+
+        configurarDropdownDesktop('tecnicosDropdownBtn', 'tecnicosDropdownMenu', 'tecnicosChevron');
+        configurarDropdownDesktop('profDropdownBtn', 'profDropdownMenu', 'profChevron');
+
+        // Fecha menus se clicar fora de qualquer elemento do cabeçalho
+        document.addEventListener('click', () => fecharTodosDropdowns());
+
+
+        // 3. MENU MOBILE HAMBURGUER (Toggle Geral)
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconMenu = document.getElementById('iconMenu');
+        const iconX = document.getElementById('iconX');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'true');
+                    if(iconMenu) iconMenu.classList.add('hidden');
+                    if(iconX) iconX.classList.remove('hidden');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    if(iconMenu) iconMenu.classList.remove('hidden');
+                    if(iconX) iconX.classList.add('hidden');
+                }
+            });
+        }
+
+        // 4. SUBMENUS SANFONA DO CELULAR (Mobile Accordion)
+        function configurarSanfonaMobile(btnId, submenuId, chevronId) {
+            const btn = document.getElementById(btnId);
+            const sub = document.getElementById(submenuId);
+            if (btn && sub) {
+                btn.addEventListener('click', () => {
+                    const escondido = sub.classList.contains('hidden');
+                    const chev = document.getElementById(chevronId);
+                    if (escondido) {
+                        sub.classList.remove('hidden');
+                        if (chev) chev.classList.add('rotate-180');
+                    } else {
+                        sub.classList.add('hidden');
+                        if (chev) chev.classList.remove('rotate-180');
+                    }
+                });
+            }
+        }
+        configurarSanfonaMobile('mobileTecnicosBtn', 'mobileTecnicosSubmenu', 'mobileTecnicosChevron');
+        configurarSanfonaMobile('mobileProfBtn', 'mobileProfSubmenu', 'mobileProfChevron');
+
+    document.addEventListener('DOMContentLoaded', () => {
+        feather.replace();
+        AOS.init({ once: true });
+        iniciarCarrosselAuto();
+    });
+
+    // --- LÓGICA DO CARROSSEL ---
+    let slideAtual = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+
+    function mostrarSlide(index) {
+        slides.forEach(slide => slide.classList.replace('opacity-100', 'opacity-0'));
+        if (index >= slides.length) slideAtual = 0;
+        else if (index < 0) slideAtual = slides.length - 1;
+        else slideAtual = index;
+        slides[slideAtual].classList.replace('opacity-0', 'opacity-100');
+    }
+
+    function mudarSlide(direcao) {
+        mostrarSlide(slideAtual + direcao);
+    }
+
+    function iniciarCarrosselAuto() {
+        setInterval(() => { mudarSlide(1); }, 6000);
+    }
+
+    // --- FILTROS DE BUSCA E CATEGORIA ---
+    function filtrarCatalogo() {
+        const termoBusca = document.getElementById('input-busca').value.toLowerCase().trim();
+        const categoriaSelecionada = document.getElementById('select-categoria').value;
+        const cards = document.querySelectorAll('.card-curso');
+
+        cards.forEach(card => {
+            const titulo = card.getAttribute('data-titulo');
+            const categoriaCard = card.getAttribute('data-categoria');
+
+            const atendeBusca = termoBusca === "" || titulo.includes(termoBusca);
+            const atendeCategoria = categoriaSelecionada === "all" || categoriaCard === categoriaSelecionada;
+
+            if (atendeBusca && atendeCategoria) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // --- GERENCIAMENTO DOS MODAIS ---
+    function abrirPreCadastro(nomeCurso, codCurso) {
+        // Agora o input correto existe e receberá o nome do curso clicado!
+        const inputCurso = document.getElementById('cad-curso-nome');
+        if(inputCurso) {
+            inputCurso.value = nomeCurso;
+        }
+
+        const modalCad = document.getElementById('modal-cadastro');
+        modalCad.showModal();
+    }
+
+    function abrirTermos(event) {
+        event.preventDefault();
+
+        alert("ENVIADO COM SUCESSO, UM EMAIL DE CONFIRMAÇÃO SERÁ ENVIADO.\n\nOBS: O aluno que se cadastra, seus dados aparecem na lista de alunos cadastrados com o status de pré-matrícula.");
+
+        document.getElementById('modal-cadastro').close();
+        document.getElementById('form-cadastro').reset();
+    }
+</script>
+
+</body>
+</html>
