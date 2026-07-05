@@ -1,10 +1,687 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weavertec - Painel do Administrador</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        /* Esconder barras de rolagem feias mantendo a funcionalidade */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+<nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="flex items-center space-x-4 group">
+                    <img src="https://i.imgur.com/e7SRbLO.png" alt="Logo Weavertec" class="h-14 w-auto">
+                    <div class="h-8 w-px bg-gray-300 hidden sm:block"></div>
+                    <div class="hidden sm:block leading-tight">
+                        <span class="text-xs font-black tracking-widest text-gray-400 uppercase block">PAINEL DO</span>
+                        <span class="text-sm font-black tracking-widest text-red-600 uppercase block">ADMINISTRADOR</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="text-right hidden md:block">
+                    <p class="text-sm font-bold text-gray-900">Diretoria Weavertec</p>
+                    <p class="text-xs text-gray-500">Administrador Master</p>
+                </div>
+                <div class="h-10 w-10 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold shadow-inner">
+                    ADM
+                </div>
+                <a href="login.html" class="p-2 text-gray-400 hover:text-red-600 transition-colors rounded-lg hover:bg-gray-100" title="Sair do Sistema">
+                    <i data-feather="log-out" class="h-5 w-5"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+            <div>
+                <p class="text-xs font-semibold tracking-wider text-gray-400 uppercase">Prestadores/Professores</p>
+                <h3 class="text-3xl font-black text-gray-900 mt-1">24</h3>
+                <p class="text-xs text-green-600 font-medium mt-1 flex items-center">
+                    <i data-feather="trending-up" class="h-3 w-3 mr-1"></i> Ativos no sistema
+                </p>
+            </div>
+            <div class="p-4 bg-red-50 text-red-600 rounded-xl">
+                <i data-feather="briefcase" class="h-6 w-6"></i>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+            <div>
+                <p class="text-xs font-semibold tracking-wider text-gray-400 uppercase">Alunos Matriculados</p>
+                <h3 class="text-3xl font-black text-gray-900 mt-1">1,420</h3>
+                <p class="text-xs text-green-600 font-medium mt-1 flex items-center">
+                    <i data-feather="trending-up" class="h-3 w-3 mr-1"></i> +12% este mês
+                </p>
+            </div>
+            <div class="p-4 bg-red-50 text-red-600 rounded-xl">
+                <i data-feather="users" class="h-6 w-6"></i>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+            <div>
+                <p class="text-xs font-semibold tracking-wider text-gray-400 uppercase">Cursos Ofertados</p>
+                <h3 class="text-3xl font-black text-gray-900 mt-1">18</h3>
+                <p class="text-xs text-gray-500 font-medium mt-1">Técnicos & Profissionalizantes</p>
+            </div>
+            <div class="p-4 bg-gray-50 text-gray-600 rounded-xl">
+                <i data-feather="book-open" class="h-6 w-6"></i>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+            <div>
+                <p class="text-xs font-semibold tracking-wider text-gray-400 uppercase">Status do Servidor</p>
+                <h3 class="text-lg font-bold text-green-600 mt-2 flex items-center">
+                    <span class="h-2 w-2 rounded-full bg-green-500 inline-block mr-2 animate-pulse"></span>
+                    Online / Seguro
+                </h3>
+                <p class="text-xs text-gray-400 mt-1">Atualizado em tempo real</p>
+            </div>
+            <div class="p-4 bg-green-50 text-green-600 rounded-xl">
+                <i data-feather="shield" class="h-6 w-6"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="border-b border-gray-200 mb-8 overflow-x-auto no-scrollbar flex">
+        <nav class="-mb-px flex space-x-8 min-w-max" aria-label="Abas de gerenciamento">
+            <button onclick="mudarAba('modulo-prestadores')" id="tab-modulo-prestadores" class="tab-btn border-b-2 border-red-600 text-red-600 font-bold px-1 pb-4 text-sm flex items-center space-x-2 focus:outline-none">
+                <i data-feather="briefcase" class="h-4 w-4"></i>
+                <span>Prestadores</span>
+            </button>
+            <button onclick="mudarAba('modulo-alunos')" id="tab-modulo-alunos" class="tab-btn border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 font-medium px-1 pb-4 text-sm flex items-center space-x-2 focus:outline-none">
+                <i data-feather="users" class="h-4 w-4"></i>
+                <span>Alunos</span>
+            </button>
+            <button onclick="mudarAba('modulo-cursos')" id="tab-modulo-cursos" class="tab-btn border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 font-medium px-1 pb-4 text-sm flex items-center space-x-2 focus:outline-none">
+                <i data-feather="book-open" class="h-4 w-4"></i>
+                <span>Cursos</span>
+            </button>
+            <button onclick="abrirModalSistema()" class="text-gray-500 hover:text-red-600 font-medium px-1 pb-4 text-sm flex items-center space-x-2 focus:outline-none ml-auto">
+                <i data-feather="settings" class="h-4 w-4"></i>
+                <span>Configuração do Sistema</span>
+            </button>
+        </nav>
+    </div>
+
+    <div id="modulo-prestadores" class="tab-content block">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h4 class="text-lg font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="w-1 h-5 bg-red-600 rounded mr-2 inline-block"></span>
+                    Cadastrar Prestador
+                </h4>
+                <form class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">CPF (Login)</label>
+                            <input type="text" placeholder="000.000.000-00" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Senha de Acesso</label>
+                            <input type="password" placeholder="******" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nome Completo</label>
+                        <input type="text" placeholder="Nome do profissional" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nascimento</label>
+                            <input type="date" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Telefone</label>
+                            <input type="text" placeholder="(91) 99999-9999" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">E-mail</label>
+                        <input type="email" placeholder="professor@weavertec.com" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                    </div>
+
+                    <div class="bg-gray-50 p-3 rounded-xl space-y-2 border border-gray-100">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wide">Endereço Residencial</p>
+                        <input type="text" placeholder="Rua, Número, Bairro" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                        <div class="grid grid-cols-3 gap-2">
+                            <input type="text" placeholder="Cidade" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                            <input type="text" placeholder="UF" maxlength="2" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                            <input type="text" placeholder="CEP" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Tipo Profissional</label>
+                            <select class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500 bg-white">
+                                <option>Instrutor Técnico</option>
+                                <option>Professor EAD</option>
+                                <option>Coordenador</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Especialidade</label>
+                            <input type="text" placeholder="Ex: Programação, Elétrica" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50/50 p-3 rounded-xl space-y-2 border border-red-100/40">
+                        <p class="text-xs font-bold text-red-700 uppercase tracking-wide flex items-center">
+                            <i data-feather="credit-card" class="h-3 w-3 mr-1"></i> Dados Bancários & PIX
+                        </p>
+                        <div class="grid grid-cols-3 gap-2">
+                            <input type="text" placeholder="Banco" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                            <input type="text" placeholder="Agência" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                            <input type="text" placeholder="Conta" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                        </div>
+                        <input type="text" placeholder="Chave PIX (E-mail, CPF, Celular)" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Cursos Vinculados</label>
+                            <input type="text" placeholder="Ex: Sistemas, Hardware" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Turno de Atuação</label>
+                            <select class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500 bg-white">
+                                <option>Manhã</option>
+                                <option>Tarde</option>
+                                <option>Noite</option>
+                                <option>Integral</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Foto de Perfil</label>
+                        <input type="file" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100">
+                    </div>
+
+                    <div class="flex items-center pt-2">
+                        <input id="termos-prestador" type="checkbox" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
+                        <label for="termos-prestador" class="ml-2 text-xs text-gray-500">Aceito os termos e condições de uso administrativo.</label>
+                    </div>
+
+                    <div class="flex space-x-3 pt-4 border-t border-gray-100">
+                        <button type="submit" class="flex-1 bg-gradient-to-r from-red-600 to-red-800 text-white font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wider hover:opacity-95 transition-all shadow-md">Salvar</button>
+                        <button type="button" class="flex-1 bg-gray-100 text-gray-600 font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wider hover:bg-gray-200 transition-all">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-gray-100 gap-4">
+                    <h4 class="text-lg font-bold text-gray-900 flex items-center">
+                        <span class="w-1 h-5 bg-gray-900 rounded mr-2 inline-block"></span>
+                        Listagem de Prestadores
+                    </h4>
+                    <div class="relative max-w-xs w-full">
+                        <input type="text" placeholder="Buscar por Registro, Nome, Turno..." class="w-full pl-9 pr-4 py-1.5 border border-gray-200 rounded-full text-xs focus:outline-none focus:border-red-500">
+                        <i data-feather="search" class="absolute left-3 top-2 h-3.5 w-3.5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto mt-4 flex-1">
+                    <table class="min-w-full divide-y divide-gray-100 text-sm text-left">
+                        <thead>
+                            <tr class="text-xs font-bold text-gray-400 uppercase tracking-wider">
+                                <th class="py-3 px-4">Registro</th>
+                                <th class="py-3 px-4">Nome</th>
+                                <th class="py-3 px-4">Telefone</th>
+                                <th class="py-3 px-4">Tipo Profissional</th>
+                                <th class="py-3 px-4 text-right">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 font-medium text-gray-700">
+                            <tr class="hover:bg-gray-50/80 transition-colors">
+                                <td class="py-4 px-4 text-xs font-mono text-gray-400">#PR0024</td>
+                                <td class="py-4 px-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-8 w-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold text-xs">RC</div>
+                                        <span>Ricardo Costa Silva</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-gray-500">(91) 98322-1144</td>
+                                <td class="py-4 px-4"><span class="px-2.5 py-1 bg-red-50 text-red-600 rounded-md text-xs font-semibold">Instrutor Técnico</span></td>
+                                <td class="py-4 px-4 text-right space-x-2">
+                                    <button class="text-gray-400 hover:text-gray-900 transition-colors" title="Visualizar / Alterar"><i data-feather="edit-3" class="h-4 w-4 inline"></i></button>
+                                    <button class="text-gray-400 hover:text-red-600 transition-colors" title="Excluir"><i data-feather="trash-2" class="h-4 w-4 inline"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 mt-auto flex justify-end">
+                    <button class="flex items-center space-x-2 px-4 py-2 bg-gray-900 text-white font-bold rounded-xl text-xs uppercase tracking-wider hover:bg-gray-800 transition shadow-md">
+                        <i data-feather="printer" class="h-3.5 w-3.5"></i>
+                        <span>Imprimir Registro</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modulo-alunos" class="tab-content hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h4 class="text-lg font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="w-1 h-5 bg-red-600 rounded mr-2 inline-block"></span>
+                    Matricular Aluno
+                </h4>
+                <form class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">CPF (Login)</label>
+                            <input type="text" placeholder="000.000.000-00" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Senha Gerada</label>
+                            <input type="password" placeholder="******" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nome Completo do Aluno</label>
+                        <input type="text" placeholder="Nome completo" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nascimento</label>
+                            <input type="date" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Telefone / WhatsApp</label>
+                            <input type="text" placeholder="(91) 98000-0000" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">E-mail</label>
+                        <input type="email" placeholder="aluno@email.com" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                    </div>
+
+                    <div class="bg-gray-50 p-3 rounded-xl space-y-2 border border-gray-100">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wide">Endereço Residencial</p>
+                        <input type="text" placeholder="Rua, Número, Bairro" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                        <div class="grid grid-cols-3 gap-2">
+                            <input type="text" placeholder="Cidade" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                            <input type="text" placeholder="UF" maxlength="2" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                            <input type="text" placeholder="CEP" class="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:outline-none focus:border-red-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Curso Matriculado</label>
+                        <select class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500 bg-white">
+                            <option>Desenvolvimento de Sistemas - EAD</option>
+                            <option>Eletrotécnica Industrial - Presencial</option>
+                            <option>Automação e Robótica - Presencial</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Data para Acerto (Venc.)</label>
+                            <input type="date" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Forma de Pagamento</label>
+                            <select class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500 bg-white">
+                                <option>Cartão de Crédito</option>
+                                <option>Boleto Bancário</option>
+                                <option>Pix Mensal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Possui PCD?</label>
+                            <select class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500 bg-white">
+                                <option>Não se aplica</option>
+                                <option>Física</option>
+                                <option>Auditiva</option>
+                                <option>Visual</option>
+                                <option>Cognitiva / Outra</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Foto do Aluno</label>
+                            <input type="file" class="w-full text-xs text-gray-500 file:py-2 file:px-3 file:rounded-full file:border-0 file:bg-red-50 file:text-red-700">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center pt-2">
+                        <input id="termos-aluno" type="checkbox" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
+                        <label for="termos-aluno" class="ml-2 text-xs text-gray-500">Contrato de prestação de serviços educacionais aceito.</label>
+                    </div>
+
+                    <div class="flex space-x-3 pt-4 border-t border-gray-100">
+                        <button type="submit" class="flex-1 bg-gradient-to-r from-red-600 to-red-800 text-white font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wider hover:opacity-95 transition-all shadow-md">Salvar / Sair</button>
+                        <button type="button" class="flex-1 bg-gray-100 text-gray-600 font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wider hover:bg-gray-200 transition-all">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-gray-100 gap-4">
+                    <h4 class="text-lg font-bold text-gray-900 flex items-center">
+                        <span class="w-1 h-5 bg-gray-900 rounded mr-2 inline-block"></span>
+                        Listagem de Alunos Matriculados
+                    </h4>
+                    <div class="relative max-w-xs w-full">
+                        <input type="text" placeholder="Buscar por Matrícula, Nome, Fone..." class="w-full pl-9 pr-4 py-1.5 border border-gray-200 rounded-full text-xs focus:outline-none focus:border-red-500">
+                        <i data-feather="search" class="absolute left-3 top-2 h-3.5 w-3.5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto mt-4 flex-1">
+                    <table class="min-w-full divide-y divide-gray-100 text-sm text-left">
+                        <thead>
+                            <tr class="text-xs font-bold text-gray-400 uppercase tracking-wider">
+                                <th class="py-3 px-4">Matrícula</th>
+                                <th class="py-3 px-4">Aluno</th>
+                                <th class="py-3 px-4">Telefone</th>
+                                <th class="py-3 px-4">Curso Ativo</th>
+                                <th class="py-3 px-4 text-right">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 font-medium text-gray-700">
+                            <tr class="hover:bg-gray-50/80 transition-colors">
+                                <td class="py-4 px-4 text-xs font-mono text-gray-400">#WT202688</td>
+                                <td class="py-4 px-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-8 w-8 bg-gray-100 text-gray-700 rounded-full flex items-center justify-center font-bold text-xs">MA</div>
+                                        <div>
+                                            <p class="font-bold text-gray-900">Marcos André Pereira</p>
+                                            <p class="text-xs text-gray-400 font-normal">marcos@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-gray-500">(91) 98112-9900</td>
+                                <td class="py-4 px-4 text-xs text-gray-600">Dev. de Sistemas (EAD)</td>
+                                <td class="py-4 px-4 text-right space-x-2">
+                                    <button class="text-gray-400 hover:text-gray-900 transition-colors" title="Editar"><i data-feather="edit-2" class="h-4 w-4 inline"></i></button>
+                                    <button class="text-gray-400 hover:text-red-600 transition-colors" title="Excluir"><i data-feather="trash-2" class="h-4 w-4 inline"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 mt-auto flex justify-end">
+                    <button class="flex items-center space-x-2 px-4 py-2 bg-gray-900 text-white font-bold rounded-xl text-xs uppercase tracking-wider hover:bg-gray-800 transition shadow-md">
+                        <i data-feather="file-text" class="h-3.5 w-3.5"></i>
+                        <span>Imprimir Ficha</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modulo-cursos" class="tab-content hidden">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            <h4 class="text-lg font-bold text-gray-900 mb-6 flex items-center">
+                <span class="w-1 h-5 bg-red-600 rounded mr-2 inline-block"></span>
+                Configuração e Abertura de Cursos
+            </h4>
+
+            <form class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Código Identificador (COD)</label>
+                        <input type="text" placeholder="Ex: TEC-DEV" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Categoria</label>
+                        <select class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500 bg-white">
+                            <option>Técnico</option>
+                            <option>Profissionalizante</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nome do Curso</label>
+                        <input type="text" placeholder="Nome da Formação" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Modalidade</label>
+                        <select class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500 bg-white">
+                            <option>EAD</option>
+                            <option>PRESENCIAL</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Duração Total (Carga Horária / Meses)</label>
+                        <input type="text" placeholder="Ex: 1200 horas / 18 meses" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Valor de Matrícula (R$)</label>
+                        <input type="number" step="0.01" placeholder="99.90" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Valor de Mensalidade (R$)</label>
+                        <input type="number" step="0.01" placeholder="149.90" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Descrição Geral do Curso</label>
+                        <textarea rows="3" placeholder="Insira o resumo sobre a grade e objetivos do curso..." class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Módulos Programáticos (Separados por vírgula)</label>
+                        <textarea rows="3" placeholder="Módulo 1: Algoritmos, Módulo 2: Banco de Dados..." class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500"></textarea>
+                    </div>
+                </div>
+
+                <div class="bg-red-50/60 p-4 rounded-2xl border border-red-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="max-w-xl">
+                        <p class="text-sm font-black text-red-700 flex items-center">
+                            <i data-feather="gift" class="h-4 w-4 mr-2"></i> Módulo de Promoção Exclusiva
+                        </p>
+                        <p class="text-xs text-gray-500 mt-1">Marque como sim se ao se matricular o aluno for ganhar automaticamente outros cursos gratuitos como brinde de incentivo.</p>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <div class="flex items-center">
+                            <input type="radio" id="promo-sim" name="promo" class="h-4 w-4 text-red-600 focus:ring-red-500" onclick="document.getElementById('promo-detalhes').classList.remove('hidden')">
+                            <label for="promo-sim" class="ml-2 text-sm font-bold text-gray-700">Sim, em Promoção</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="promo-nao" name="promo" class="h-4 w-4 text-red-600 focus:ring-red-500" checked onclick="document.getElementById('promo-detalhes').classList.add('hidden')">
+                            <label for="promo-nao" class="ml-2 text-sm font-bold text-gray-700">Não</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="promo-detalhes" class="hidden bg-white p-4 rounded-2xl border border-gray-200 space-y-3">
+                    <p class="text-xs font-black text-gray-700 uppercase tracking-widest text-red-600">Configurar Brindes da Matrícula:</p>
+                    <label class="block text-xs font-bold text-gray-500">Cursos Gratuitos Incluídos (Ao se matricular neste curso, o aluno ganha automaticamente):</label>
+                    <input type="text" placeholder="Ex: Curso de Inglês Instrumental, Curso de Lógica de Programação" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Foto da Capa do Curso</label>
+                        <input type="file" class="w-full text-xs text-gray-500 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-gray-100 file:text-gray-700">
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
+                    <button type="button" class="bg-gray-100 text-gray-600 font-bold py-2 px-6 rounded-xl text-xs uppercase tracking-wider hover:bg-gray-200 transition">Cancelar</button>
+                    <button type="submit" class="bg-gradient-to-r from-red-600 to-red-800 text-white font-bold py-2 px-8 rounded-xl text-xs uppercase tracking-wider hover:opacity-95 transition shadow-md">Salvar / Registrar Curso</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<div id="modal-sistema" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 transition-all duration-300 opacity-0">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full p-6 sm:p-8 transform scale-95 transition-all duration-300 max-h-[90vh] overflow-y-auto no-scrollbar">
+
+        <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+            <h3 class="text-xl font-black text-gray-900 flex items-center">
+                <i data-feather="sliders" class="h-5 w-5 text-red-600 mr-2"></i>
+                Configurações Estruturais do Sistema
+            </h3>
+            <button onclick="fecharModalSistema()" class="text-gray-400 hover:text-gray-600"><i data-feather="x" class="h-6 w-6"></i></button>
+        </div>
+
+        <form class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nome da Instituição</label>
+                    <input type="text" value="WEAVERTEC CURSOS" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">CNPJ / CPF</label>
+                    <input type="text" value="00.000.000/0001-00" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">E-mail de Contato Principal</label>
+                    <input type="email" value="contato@weavertec.com.br" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Telefone Institucional</label>
+                    <input type="text" value="(91) 98325-2639" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-xl space-y-3 border border-gray-100">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-wide">Endereço da Sede Central</p>
+                <input type="text" value="Av. Principal, nº 1000, Centro" class="w-full bg-white border border-gray-200 rounded-md px-3 py-2 text-xs focus:outline-none focus:border-red-500">
+                <div class="grid grid-cols-3 gap-3">
+                    <input type="text" value="Vigia" class="w-full bg-white border border-gray-200 rounded-md px-3 py-2 text-xs focus:outline-none focus:border-red-500">
+                    <input type="text" value="PA" maxlength="2" class="w-full bg-white border border-gray-200 rounded-md px-3 py-2 text-xs focus:outline-none focus:border-red-500">
+                    <input type="text" value="68780-000" class="w-full bg-white border border-gray-200 rounded-md px-3 py-2 text-xs focus:outline-none focus:border-red-500">
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-4 space-y-4">
+                <p class="text-xs font-bold text-red-600 uppercase tracking-widest">Identidade Visual & Tema</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Cor do Tema (Hex)</label>
+                        <div class="flex space-x-2">
+                            <input type="color" value="#dc2626" class="h-9 w-9 rounded-md border border-gray-200 p-0.5 cursor-pointer bg-white">
+                            <input type="text" value="#dc2626" class="w-full border border-gray-200 rounded-lg px-2 py-1 text-sm text-center font-mono">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Fonte Padrão</label>
+                        <select class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500 bg-white">
+                            <option selected>Inter (Padrão)</option>
+                            <option>Roboto</option>
+                            <option>Open Sans</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Tamanho da Fonte</label>
+                        <select class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500 bg-white">
+                            <option>Pequeno (14px)</option>
+                            <option selected>Médio (16px)</option>
+                            <option>Grande (18px)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Atualizar Logotipo da Plataforma</label>
+                    <input type="file" class="w-full text-xs text-gray-500 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-red-50 file:text-red-700">
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
+                <button type="button" onclick="fecharModalSistema()" class="bg-gray-100 text-gray-600 font-bold py-2 px-6 rounded-xl text-xs uppercase tracking-wider hover:bg-gray-200 transition">Cancelar</button>
+                <button type="submit" class="bg-gradient-to-r from-red-600 to-red-800 text-white font-bold py-2 px-8 rounded-xl text-xs uppercase tracking-wider hover:opacity-95 transition shadow-md">Salvar / Sair</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Renderiza os ícones do Feather
+        feather.replace();
+    });
+
+    // Função para gerenciar a troca entre as abas principais (Prestadores / Alunos / Cursos)
+    function mudarAba(moduloId) {
+        // Esconde todos os conteúdos de abas
+        const conteudos = document.querySelectorAll('.tab-content');
+        conteudos.forEach(item => item.classList.add('hidden'));
+
+        // Remove estilo ativo de todos os botões de abas
+        const botoes = document.querySelectorAll('.tab-btn');
+        botoes.forEach(btn => {
+            btn.classList.remove('border-red-600', 'text-red-600', 'font-bold');
+            btn.classList.add('border-transparent', 'text-gray-500', 'font-medium');
+        });
+
+        // Mostra a aba atual clicada
+        document.getElementById(moduloId).classList.remove('hidden');
+
+        // Adiciona classe de destaque no botão ativo correspondente
+        const botaoAtivo = document.getElementById('tab-' + moduloId);
+        botaoAtivo.classList.remove('border-transparent', 'text-gray-500', 'font-medium');
+        botaoAtivo.classList.add('border-red-600', 'text-red-600', 'font-bold');
+    }
+
+    // Gerenciamento de abertura/fechamento do Modal de Configuração de Sistema
+    function abrirModalSistema() {
+        const modal = document.getElementById('modal-sistema');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modal.querySelector('div').classList.remove('scale-95');
+            modal.querySelector('div').classList.add('scale-100');
+        }, 10);
+    }
+
+    function fecharModalSistema() {
+        const modal = document.getElementById('modal-sistema');
+        modal.classList.remove('opacity-0');
+        modal.querySelector('div').classList.remove('scale-100');
+        modal.querySelector('div').classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }, 200);
+    }
+</script>
 
 </body>
 </html>
